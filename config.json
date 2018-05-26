@@ -1,0 +1,11 @@
+{
+    "isUseGlobalCache": false,
+    "timestamp": 1526421216712,
+    "serverHost": "localhost",
+    "serverPort": "8001",
+    "protocal": "http",
+    "apiProxyPathKey": "/api"
+}
+
+
+
