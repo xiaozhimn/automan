@@ -71,6 +71,28 @@ storage中的数据可以前后端共享，从而可以快速展现页面。
 ```
 标准化的目录结构和编程体验，能够让你的团队维护起来更加友好，组件的大量复用提升开发效率。
 ```
+**13. node端api请求代理支持各种协议，前后端分离，一套前端代码可以调试线上各种api环境**
+```
+只需在env.json中配置不同环境的api请求参数，即可随意切换api请求环境
+{
+    "local": {
+       "host": "localhost",
+       "port": "8001",
+       "protocal": "http"
+    },
+    "pro": {
+      "host": "www.soeasypay.cn",
+      "port": "80",
+      "protocal": "https"
+    },
+    "pre": {
+      "host": "pre.soeasypay.cn",
+      "port": "80",
+      "protocal": "https"
+    }
+}
+只需命令行中使用 automan-cli -w pro， automan-cli -w pre等
+```
 相关开发文档参考：
 1.  [简介](http://www.uyi2.com/docs?id=260)
 2.  [automan-cli脚手架的安装](http://www.uyi2.com/docs?id=261)
