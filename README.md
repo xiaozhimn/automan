@@ -2,6 +2,9 @@
 Automan一站式开发框架
 automan对vue做了大量的二次封装上层对开发者提供简单的api，编码的体验更加友好，主要针对使用vue-cli构建前端应用的某些不足做了大量的优化，其优势主要表现在以下几个方面。
 
+# 安装
+npm install -gd automan-cli
+
 **1. 更加轻量级的automan-cli脚手架工具**
 
 ```
