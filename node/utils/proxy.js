@@ -2,30 +2,21 @@ var path = require("path");
 var express = require("express");
 var compression = require('compression');
 var proxy = require('http-proxy-middleware');
-var fs = require("fs");
-var env = JSON.parse(fs.readFileSync("./evn.json"));
 module.exports = {
     initProxy: function() {
-        var param = "";
-        var envConfig = null;
-        if(process.argv.length > 2) {
-            param = (process.argv.splice(2))[0];
-        }
-        if(param) {
-            if(env[param]) {
-                globalConfig.serverHost = env[param]["host"];
-                globalConfig.serverPort = env[param]["port"];
-                globalConfig.protocal = env[param]["protocal"];
-            }
-        }
         var dirname = __dirname;
         dirname = dirname.substring(0, dirname.lastIndexOf("\\"));
         app.use(compression()); //use compression
         /*api代理*/
         var apiOptions = {
-            target:  globalConfig.protocal + '://' + globalConfig.serverHost + ":" + globalConfig.serverPort, // 目标主机
+            target:  globalConfig.protocal + '://' + globalConfig.serverHost +  (globalConfig.serverPort== "" || globalConfig.serverPort == "80" ? "" : ":" + globalConfig.serverPort), // 目标主机
+            changeOrigin: true,
             proxyTimeout:30000
         };
+        if(globalConfig.apiProxyPathRewrite) {
+            apiOptions["pathRewrite"] = {};
+            apiOptions["pathRewrite"]['^' + globalConfig.apiProxyPathKey] = '';
+        }
         apiOptions.onProxyReq = function(proxyReq, req, res) {
 
         }

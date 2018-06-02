@@ -26,6 +26,9 @@ function request(url, config, callback, type) {
             url = url.replaceAll("{" + key + "}", seatParams[key]);
         }
     }
+    if(globalConfig.apiProxyPathRewrite) {
+        url = url.replaceAll(globalConfig.apiProxyPathKey, "");
+    }
     var ajaxConfig = {
         type: type,
         url: protocal + "://" + host + ":" + port + (url.indexOf("/") == 0 ? url : "/" + url),
